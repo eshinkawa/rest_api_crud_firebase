@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
+
 const Firebase = require('firebase');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
-const multer = require('multer');
-const fs = require('fs');
+
+const PORT = process.env.PORT || 5000
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,12 +19,12 @@ app.use((req, res, next) => {
 });
 
 Firebase.initializeApp({
-  apiKey: 'AIzaSyAAYrcpXYtrs_W_xJVc-kRclyhTJr2vtyU',
-  authDomain: 'pvhserver.firebaseapp.com',
-  databaseURL: 'https://pvhserver.firebaseio.com',
-  projectId: 'pvhserver',
-  storageBucket: 'pvhserver.appspot.com',
-  messagingSenderId: '233701965380',
+  apiKey: 'YOUR-API-KEY-HERE',
+  authDomain: 'your-domain.firebaseapp.com',
+  databaseURL: 'https://your-db.firebaseio.com',
+  projectId: 'your-projId',
+  storageBucket: 'your-storage',
+  messagingSenderId: 'your-id',
 });
 
 const db = Firebase.database();
@@ -92,6 +92,6 @@ app.delete('/api/user/:id', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Running port is 3000');
+app.listen(PORT, () => {
+  console.log(`Running port is ${PORT}`);
 });
